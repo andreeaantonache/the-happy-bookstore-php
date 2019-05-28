@@ -12,7 +12,7 @@
 <body>
 <header class="bgimg" id="home">
 <div>
-      <a href='login.php' target ="_blank" id = "log"> Log in</a>
+      <a href='login.php' target ="_self" id = "log"> Log in</a>
       <i class="fas fa-sign-in-alt"></i>     
 </div>
   <div class="title-content">
@@ -38,7 +38,7 @@
 
 <!-- Footer -->
 <footer class="footer">
-  <p>Powered by <a href="#" title="the happy bookstore" target="_blank" class="footer-text">the happy bookstore</a></p>
+  <p>Powered by <a href="index.php" title="the happy bookstore" target="_blank" class="footer-text">the happy bookstore</a></p>
 </footer>
 </body>
 </html>

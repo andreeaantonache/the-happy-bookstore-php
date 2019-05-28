@@ -13,7 +13,7 @@
 <body>
 <header class="bgimg" id="home">
 <div>
-      <a href='login.php' target ="_blank" id = "log"> Log in</a>
+      <a href='login.php' target ="_self" id = "log"> Log in</a>
       <i class="fas fa-sign-in-alt"></i>     
 </div>
   <div class="title-content">
@@ -37,7 +37,7 @@
     
             <form action="" target="_blank">
                 <p class="message">If you have some recommendations for us, please let us know :D </p>
-                <p><input  type="text" placeholder="Name"></p>
+                <p><input type="text" placeholder="Name"></p>
                 <textarea id="subject" placeholder="Your ideas.." style="height:200px"></textarea>
                 <p><button type="submit">SEND MESSAGE</button></p>
             </form>

@@ -39,7 +39,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
          
         // Close statement
-        mysqli_stmt_close($stmt);
+        if ($stmt)
+            mysqli_stmt_close($stmt);
     }
     
     // Validate password
@@ -65,9 +66,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
         
         // Prepare an insert statement
-        $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+        $sql = "INSERT INTO user (username, password) VALUES (?, ?)";
          
-        if($stmt = mysqli_prepare($link, $sql)){
+        if($stmt = mysqli_prepare($conn, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
             
@@ -81,15 +82,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 header("location: login.php");
             } else{
                 echo "Something went wrong. Please try again later.";
+               
             }
         }
          
         // Close statement
-        mysqli_stmt_close($stmt);
+        if ($stmt)
+            mysqli_stmt_close($stmt);
+       
     }
     
     // Close connection
-    mysqli_close($link);
+    mysqli_close($conn);
 }
 ?>
  
@@ -100,42 +104,48 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <title>Sign Up</title>
   
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" type="text/css" href="style.css" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 </head>
 <body>
 <header class="bgimg" id="home" style="min-height:100%;">
 <div>
-      <a href='login.php' target ="_blank" id = "log"> Log in</a>
-     <!-- <i class="fas fa-sign-in-alt"></i>-->     
+      <a href='login.php' target ="_self" id = "log"> Log in</a>
+      <i class="fas fa-sign-in-alt"></i>   
 </div>
   <div class="title-content" style="left:35%;">
     <span class="title" style="font-size:55px;">the<br>happy bookstore</span>
     
   </div>
-</header>
+
     <div class="title-content"  style="left:80%; margin-top:30px;">
         <h2  style="color:white; transform: translate(-50%,-50%);">Sign Up</h2>
-        <p>Please fill this form to create an account.</p>
+        <p style="color:white; transform: translate(-50%,-50%);">Please fill this form to create an account.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-register <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                <input type="text" name="username"  placeholder="Username" value="<?php echo $username; ?>">
+                <input type="text" name="username"  placeholder="Username" style="width:250px;" value="<?php echo $username; ?>">
                 <span class="help-block"><?php echo $username_err; ?></span>
-            </div>    
-            <div class="form-register <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                <input type="password" name="password"  placeholder="Password" value="<?php echo $password; ?>">
-                <span class="help-block"><?php echo $password_err; ?></span>
             </div>
-            <div class="form-register<?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
-                <input type="password" name="confirm_password" placeholder="Confirm password" value="<?php echo $confirm_password; ?>">
-                <span class="help-block"><?php echo $confirm_password_err; ?></span>
+          
+            <div>  
+                <div class="form-register <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                    <input type="password" name="password"  placeholder="Password" style="width:250px;" value="<?php echo $password; ?>">
+                    <span class="help-block"><?php echo $password_err; ?></span>
+                </div>
+                <div class="form-register <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+                    <input type="password" name="confirm_password" placeholder="Confirm password" style="width:250px;"value="<?php echo $confirm_password; ?>">
+                    <span class="help-block"><?php echo $confirm_password_err; ?></span>
+                </div>
             </div>
             <div class="form-register">
-                <input type="submit" value="Submit">
-                <input type="reset" value="Reset">
+                <input type="submit" style="width:270px;" value="Submit" >
+            <div>
+                <br /><input type="reset"  style="width:270px;" value="Reset" >
             </div>
-            <p>Already have an account? <a href="login.php">Login here</a>.</p>
+            </div>
+            <p style="color:white; display:inline-block; padding:10px 0;transform:translate(-50%,-50%);width:169%;">Already have an account? <a href="login.php" id ="log-register"><b>Login here</b></a>.</p>
         </form>
     </div> 
+<header>
 </body>
 </html>

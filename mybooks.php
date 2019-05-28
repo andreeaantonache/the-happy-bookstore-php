@@ -11,7 +11,7 @@
 <body>
 <header class="bgimg" id="home">
 <div>
-      <a href='logout.php' target ="_blank" id = "log"> Log out</a>
+      <a href='logout.php' target ="_self" id = "log"> Log out</a>
      <!-- <i class="fas fa-sign-in-alt"></i>-->     
 </div>
   <div class="title-content">

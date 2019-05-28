@@ -1,4 +1,4 @@
-<html>
+<html lang="en">
 <head>
   <title>thehappybookstore</title>
   <meta charset="UTF-8">
@@ -7,23 +7,22 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 </head>
-
 <body>
 <header class="bgimg" id="home">
-<div>
-      <a href='login.php' target ="_blank" id = "log"> Log in</a>
-      <i class="fas fa-sign-in-alt"></i>     
-</div>
+  <div>
+        <a href='login.php' target ="_self" id ="log"> Log in</a>
+        <i class="fas fa-sign-in-alt"></i>     
+  </div>
   <div class="title-content">
-    <span class="title" style="font-size:55px">the<br>happy bookstore</span>
+    <span class="title" style="font-size:55px;">the<br>happy bookstore</span>
     <div class="padding">
       <div class="meniu">
-          <a href="index.php" class="home">Home</a>
-          <a href="books.php" class="home">Menu Books</a>
-          <a href="articles.php" class="home">Articles</a>
-          <a href="contact.php" class="home">Contact</a>
+        <a href="index.php" class="home">Home</a>
+        <a href="books.php" class="home">Menu Books</a>
+        <a href="articles.php" class="home">Articles</a>
+        <a href="contact.php" class="home">Contact</a>
       </div>
-   </div>
+    </div>
   </div>
 </header>
 <div class="all-page">

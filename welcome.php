@@ -2,11 +2,21 @@
 // Initialize the session
 session_start();
  
+$username = $_SESSION["username"];
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
+    
     exit;
 }
+
+   
+  
+ 
+
+
+//$myusername = $_SESSION['username'];
+
 ?>
 
 <html>
@@ -22,8 +32,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <body>
 <header class="bgimg" id="home">
 <div>
-      <a href='logout.php' target ="_blank" id = "log"> Log out</a>
-     <!-- <i class="fas fa-sign-in-alt"></i>-->     
+      <a href='logout.php' target ="_self" id = "log"> Log out</a>
+      <i class="fas fa-sign-out-alt"></i>     
 </div>
   <div class="title-content">
     <span class="title" style="font-size:55px">the<br>happy bookstore</span>
@@ -38,9 +48,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <div class="all-page">
   <div class="container">
     <div style="max-width:700px">
-      <h5 class="about1"><span class="about2">ABOUT ME</span></h5>
+      <h5 class="about1"><span class="about2">Hello,<?php $_SESSION['username'];?></span></h5>
       <p>My <i>happy bookstore</i><b> profile:</b> </p>
-      <label>Username</label><br />
+      <label>About me : </label><br />
       <label>My types of books</label><br />
   
   

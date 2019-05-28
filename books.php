@@ -19,11 +19,11 @@ require_once "db_connection.php";
 <body>
 <header class="bgimg" id="home">
 <div>
-      <a href='login.php' target ="_blank" id = "log"> Log in</a>
+      <a href='login.php' target ="_self" id = "log"> Log in</a>
       <i class="fas fa-sign-in-alt"></i>     
 </div>
   <div class="title-content">
-    <span class="title" style="font-size:55px">the<br>happy bookstore</span>
+    <span class="title" style="font-size:55px;">the<br>happy bookstore</span>
     <div class="padding">
       <div class="meniu">
           <a href="index.php" class="home">Home</a>

@@ -1,2 +1,2 @@
-# the-happy-bookstore-php
-web site
+# the-happy-bookstore
+Website for a BOOKSTORE

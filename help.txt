@@ -1,0 +1,12 @@
+link helpfull exemple php - https://www.tutorialrepublic.com/php-tutorial/php-mysql-login-system.php
+table ->https://stackoverflow.com/questions/11943479/create-html-table-from-sql-table
+
+ <select name = 'subject[]' multiple size = 6>   
+                    'romatinc'
+                     'science-fiction'
+                     'fantasy'
+                     'crime' 
+                    'mystery' 
+                    'biography'
+                    <biography'
+                </select> 
