@@ -1,0 +1,5 @@
+- insert javascript - add pop up when the user register in with succes
+ - or you can create a special page with the confirmation and set the link to the login page
+- insert php for add/delete records from the database
+- pay attention of the features, how they look etc
+- try to apply javascript on contact page/ article page 
