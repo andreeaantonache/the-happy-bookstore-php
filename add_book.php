@@ -3,8 +3,8 @@
 require_once "db_connection.php";
  
 // Define variables and initialize with empty values
-$book_name = $book_author = "";
-$book_name_err = $book_author_err = "";
+$book_name = $book_author =$style= "";
+$book_name_err = $book_author_err =$style_err ="";
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -43,27 +43,33 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             mysqli_stmt_close($stmt);
     }
     
-    // Validate password
+    // Validate book author
     if(empty(trim($_POST["book_author"]))){
         $book_author_err = "Please enter a book author.";     
     } else{
         $book_author = trim($_POST["book_author"]);
     }
+
+    if(empty(trim($_POST["style"]))){
+        $style_err = "Please enter a book style.";     
+    } else{
+        $style = trim($_POST["style"]);
+    }
     
     // Check input errors before inserting in database
-    if(empty($book_name_err) && empty($book_author_err)){
+    if(empty($book_name_err) && empty($book_author_err) && empty($style_err)){
         
         // Prepare an insert statement
-        $sql = "INSERT INTO book (bookName, bookAuthor) VALUES (?, ?)";
+        $sql = "INSERT INTO book (bookName, bookAuthor,style) VALUES (?, ?, ?)";
          
         if($stmt = mysqli_prepare($conn, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
+            mysqli_stmt_bind_param($stmt, "sss",  $param_book_name,  $param_book_author,$param_style);
             
             // Set parameters
-            $param_username = $book_name;
-            $param_password = $book_author; // Creates a password hash
-            
+            $param_book_name = $book_name;
+            $param_book_author = $book_author; 
+            $param_style =$style;
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Redirect to login page
@@ -89,7 +95,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sign Up</title>
+    <title>thehappybookstore</title>
   
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
   <link rel="stylesheet" type="text/css" href="style.css" />
@@ -104,7 +110,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   <div class="title-content" style="left:35%;">
     <span class="title" style="font-size:55px;">the<br>happy bookstore</span>
     
-  </div>
+  </div>  
 
     <div class="title-content"  style="left:80%; margin-top:30px;">
         <h2  style="color:white; transform: translate(-50%,-50%);">ADD BOOKS</h2>
@@ -117,9 +123,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <input type="text" name="book_author"  placeholder="Book Author" style="width:250px;" value="<?php echo $book_author; ?>">
                     <span class="help-block"><?php echo $book_author_err; ?></span>
                 </div>
+                <div class="form-register <?php echo (!empty($style_err)) ? 'has-error' : ''; ?>">
+                    <input type="text" name="style"  placeholder="Book Style" style="width:250px;" value="<?php echo $style; ?>">
+                    <span class="help-block"><?php echo $style_err; ?></span>
+                </div>
              
             <div class="form-register">
-                <input type="submit" style="width:270px;" value="Add" >
+                <input type="submit" style="width:250px;" value="Add" >
           
             </div>
             <p style="color:white; display:inline-block; padding:10px 0;transform:translate(-50%,-50%);width:169%;">Return to home page.<a href="welcome.php" id ="log-register"><b>HOME</b></a>.</p>

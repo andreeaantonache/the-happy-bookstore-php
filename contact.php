@@ -43,7 +43,7 @@
             <div><span class="about1"><b>Opening hours:</b> 1.august.2019</span></div>
             <br><span class="about1"><b>Address:</b> Str Florilor De Cires 1996, Iasi</span>
     
-            <form action="" target="_blank">
+            <form action="" target="_self">
                 <p class="message">If you have some recommendations for us, please let us know :D </p>
                 <p><input type="text" placeholder="Name" id="sender_name"></p>
                 <textarea id="subject" placeholder="Your ideas.." style="height:200px"></textarea>

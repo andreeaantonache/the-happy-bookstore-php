@@ -2,7 +2,9 @@
 <?php
 // Include config file
 require_once "db_connection.php";
-?> 
+ $query = "SELECT style, count(*) as number FROM book GROUP BY style";
+ $result = mysqli_query($conn, $query);
+?>
 
 
 <!DOCTYPE html>
@@ -14,6 +16,33 @@ require_once "db_connection.php";
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>  
+  
+    <script type="text/javascript">  
+           google.charts.load('current', {'packages':['corechart']});  
+           google.charts.setOnLoadCallback(drawChart);  
+           function drawChart()  
+           {  
+                var data = google.visualization.arrayToDataTable([  
+                          ['Style', 'Number'],  
+                          <?php  
+                          while($row = mysqli_fetch_array($result))  
+                          {  
+                               echo "['".$row["style"]."', ".$row["number"]."],";  
+                          }  
+                          ?>  
+                     ]);  
+                var options = {  
+                      title: 'the happy bookstore STYLE',  
+                      //is3D:true,  
+                      pieHole: 0.4  
+                     };  
+                var chart = new google.visualization.PieChart(document.getElementById('piechart'));  
+                chart.draw(data, options);  
+           }  
+           </script>  
+
 </head>
 
 <body>
@@ -37,35 +66,11 @@ require_once "db_connection.php";
 <div class="all-page">
     <div class="container">
         <div style="max-width:700px">
-            <h5 class="about1"><span class="about2">TOP 20 Books YOU must Read</span></h5>
+            <h5 class="about1"><span class="about2">The bookstore STYLE</span></h5>
             <p><i>there are soo many books, </i>yes, we all know this. Still there are a few basic books you must read. Here at our happy bookstore, we <b>have</b> them.</p>
-            <p>In addition to our full passion of books, we recomand <b>20 BOOKS</b> that you MUST HAVE in your cosmos library and READ them.</p>
-            <div class="qoute">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th >Books Title</th>
-                            <th>Author</th>
-                        
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php 
-                    mysqli_select_db($conn,"thehappybookstore");
-                    $books = mysqli_query($conn, "SELECT * FROM book");
-                    while($row =mysqli_fetch_array($books))
-                    {
-                    ?>
-                        <tr>
-                            <td><?php echo $row['id_book']?></td>
-                            <td><?php echo $row['bookName']?></td>
-                            <td><?php echo $row['bookAuthor']?></td>
-                        </tr>
-            <?php } ?>
-                    </tbody>
-                </table>	
-			</div>
+            <p>In addition to our full passion of books, we have different styles of <b>BOOKS</b> that you MUST approach.</p>
+            <div id="piechart" style="width: 600px; height: 400px; margin-left:20px;"></div>
+			
 			<!--<a href="menubooks2.html" class="home next">Add book</a>-->
         </div>
     </div>
