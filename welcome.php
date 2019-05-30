@@ -1,5 +1,7 @@
 <?php
 // Initialize the session
+// Include config file
+require_once "db_connection.php";
 session_start();
  
 $username = $_SESSION["username"];
@@ -9,13 +11,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     
     exit;
 }
-
-   
-  
- 
-
-
-//$myusername = $_SESSION['username'];
 
 ?>
 
@@ -40,7 +35,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <div class="padding">
       <div class="meniu">
           <a href="welcome.php" class="home">Home</a>
-          <a href="mybooks.php" class="home">My Books</a>
+          <a href="add_book.php" class="home">My Books</a>
       </div>
    </div>
   </div>
@@ -48,10 +43,43 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <div class="all-page">
   <div class="container">
     <div style="max-width:700px">
-      <h5 class="about1"><span class="about2">Hello,<?php $_SESSION['username'];?></span></h5>
-      <p>My <i>happy bookstore</i><b> profile:</b> </p>
-      <label>About me : </label><br />
-      <label>My types of books</label><br />
+      <h5 class="about1"><span class="about2">Hello,<i><?php echo $_SESSION['username'];?></i>!</span></h5>
+      <p><i>there are soo many books, </i>yes, we all know this. Still there are a few basic books you must read.<p>
+            <p>Here at our happy bookstore, we <b>propose</b> to you this menu of books, but you can <i>add</i> your own books the current books from menu here, <a href="mybooks.php" taget="_self" style="color:green;"><b>My books</b></a> </p>
+            <p> You can <i>delete</i> the books.</p>
+            <div class="qoute">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th >Books Title</th>
+                            <th>Author</th>
+                            <th>Delete Book</th>
+                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php 
+                    mysqli_select_db($conn,"thehappybookstore");
+                    $books = mysqli_query($conn, "SELECT * FROM book");
+                    while($row =mysqli_fetch_array($books))
+                    {
+                    ?>
+                        <tr>
+                            <td><?php echo $row['id_book']?></td>
+                            <td><?php echo $row['bookName']?></td>
+                            <td><?php echo $row['bookAuthor']?></td>
+                            <td>
+                              <form>
+                               <a href='delete.php?id=<?php echo $row['id_book']?>'><center><i class="far fa-trash-alt"></i></center></a>
+                              </form>
+                            </td>
+                              
+                        </tr>
+            <?php } ?>
+                    </tbody>
+                </table>	
+			</div>
   
   
    

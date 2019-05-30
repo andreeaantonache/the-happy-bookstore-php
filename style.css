@@ -381,3 +381,9 @@ input[type="reset"]:hover{
 #log-register:hover{
     color:green;
 }
+
+.delete-book:hover{
+     color:red;
+     
+
+}

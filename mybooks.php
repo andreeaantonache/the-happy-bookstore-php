@@ -1,3 +1,9 @@
+<?php
+// Include config file
+require_once "db_connection.php";
+?> 
+
+
 <html>
 <head>
   <title>thehappybookstore</title>
@@ -24,18 +30,35 @@
    </div>
   </div>
 </header>
-<div class="all-page">
+<!--<div class="all-page">
   <div class="container">
     <div style="max-width:700px">
       <h5 class="about1"><span class="about2">MY COSMOS LIBRARY</span></h5>
-      <p><i>my happy bookstore</i><b> BOOKS</b> </p><br />
-     
-     
-      <!--<img src="biblioteca2.jpg" class="responsive" style="width:100%; max-width:1000px;margin-top:32px;">-->
+      <div class="table">
+          <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"  method="post">
+            <p>
+                <label>Book Name:</label>
+                <input type="text" name="book_name" id="book_name">
+            </p>
+            <p>
+                <label>Book Author:</label>
+                <input type="text" name="book_author" id="book_author">
+            </p>
+            <input type="submit" value="Add Book">
+          </form>
+        </div>
+--> 
+<div class="all-page">
+    <div class="container">
+        <div style="max-width:700px">
+            <h5 class="about1"><span class="about2">TOP Books YOU Have To Read</span></h5>
+            <p><i>there are soo many books, </i>yes, we all know this. Still there are a few basic books you must read.<p>
+            <p>Here at our happy bookstore, we <b>propose</b> to you this menu of books, but you can <i>add</i> your own books or <i>delete</i> the current books.</p>
+        
+			<!--<a href="menubooks2.html" class="home next">Add book</a>-->
+        </div>
     </div>
-  </div>
 </div>
-
 <!-- Footer -->
 <footer class="footer">
   <p>Powered by <a href="welcome.php" title="the happy bookstore" target="_blank" class="footer-text">the happy bookstore</a></p>
