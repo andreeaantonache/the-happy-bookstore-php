@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <script type="text/javascript">
+      function sendCheck(){
+        sName = document.getElementById('sender_name').value
+        if (sName.length>20){
+          confirm("Are you sure your name isn't shorter? CANCEL to enter a shorter name. Press OK to continue.")
+        }
+      }
+    </script>
 </head>
 
 <body>
@@ -37,9 +45,9 @@
     
             <form action="" target="_blank">
                 <p class="message">If you have some recommendations for us, please let us know :D </p>
-                <p><input type="text" placeholder="Name"></p>
+                <p><input type="text" placeholder="Name" id="sender_name"></p>
                 <textarea id="subject" placeholder="Your ideas.." style="height:200px"></textarea>
-                <p><button type="submit">SEND MESSAGE</button></p>
+                <p><button type="submit" onclick="sendCheck()">SEND MESSAGE</button></p>
             </form>
     
             <img src="biblioteca2.jpg" class="responsive" style="width:100%; max-width:1000px;margin-top:32px;">
